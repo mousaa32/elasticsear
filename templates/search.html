@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+  <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <title>Bookmarks Search</title>
+
+</head>
+<body>
+
+  <div class="container">
+    <div style="background:transparent !important" class="jumbotron">
+      <div style="font-family: 'Pacifico', cursive;">
+        <p>
+          <center>
+              <font size="8">Welcome To MyWebSite</font>
+          </center>
+        </p>
+      </div>
+    </div>
+    <h3 style="font-family: 'Pacifico', cursive;">Recherche Par Region ,Veuillez Entrer Un Nom De Region</h3>
+    <form action="/search/1region" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus>
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-lg" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <h3 style="font-family: 'Pacifico', cursive;">Recherche Par Taux </h3>
+    <form action="/search/results" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus>
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-lg" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <h3 style="font-family: 'Pacifico', cursive;">Recherche Un Taux Pour Tous Les Regions </h3>
+    <form action="/test/taux" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus>
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-lg" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <br><br>
+    <footer class="footer">
+        <p>
+          <h3 style="font-family: 'Pacifico', cursive;">&copy; 2019 Sonatel Academy </h3>
+        </p>
+       
+      </footer>
+    </div>
+  </body>
+</html>

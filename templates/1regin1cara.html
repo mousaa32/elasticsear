@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bookmarks Search</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div style="background:transparent !important" class="jumbotron">
+            <div style="font-family: 'Pacifico', cursive;">
+                <p>
+                    <center>
+                        <font size="8">Welcome To MyWebSite</font>
+                        </font>
+                    </center>
+                </p>
+                <h2>
+                    <button class="btn btn-link pull-left">
+                        <a href="{{url_for('home')}}">
+                            <h2 style="font-family: 'Pacifico', cursive;">Accueil</h2>
+                        </a>
+                    </button>
+                </h2>
+            </div>
+        </div>
+        <h3 style="font-family: 'Pacifico', cursive;">Recherche Un Taux Pour Tous Les Regions </h3>
+        <form action="/test/taux" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary btn-lg" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="font-family: 'Pacifico', cursive;">REGION</th>
+                    <th style="font-family: 'Pacifico', cursive;">{{search_term}}</th>
+                </tr>
+            </thead>
+
+            {% for hit in val %}
+
+            <tbody>
+
+                <tr>
+
+                    <td>{{hit.region}} </td>
+                    <td>{{hit.taux}} </td>
+
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        <section>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+            <div style="width: 75%">
+                <canvas id="myChart"></canvas>
+            </div>
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [{% for i in label %} '{{i}}', {% endfor %}],
+                datasets: [{
+                    label: '{{search_term}} bar',
+                    backgroundColor: ["blue", "red", "green", "#328f8e", "black",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                        , "blue", "red", "green", "#328f8e", "black"],
+                    data: {{ dataviz }},
+                },
+                {
+                    type: 'line',
+                    label: '{{search_term}} line',
+                    backgroundColor: "red",
+                    data: {{ dataviz }},
+                    fill: false
+                }
+                        
+                      ]
+                  },
+                options: {
+                    title: {
+                        display: true,
+                            text: 'DIAGRAMME des {{search_term}} des regions du Senegal '
+                    }
+                }
+                  });
+            </script>
+
+        </section>
+
+        <footer class="footer">
+            <p>
+                <h3 style="font-family: 'Pacifico', cursive;">&copy; 2019 Sonatel Academy </h3>
+            </p>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

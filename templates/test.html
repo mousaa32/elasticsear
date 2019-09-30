@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <h1>bonjour</h1>
+    
+     <table class="table">
+            <thead>
+              <tr style="font-family: 'Pacifico', cursive;">
+      
+                <th>directors</th>
+                <th>year</th>
+                 
+      
+              </tr>
+            </thead>
+      
+            {% for i in total[0:5] %}
+            <tbody>
+              <tr>
+                <td>{{i.directors}}</td>
+                <td>{{i.year}}</td>
+                 
+              </tr>
+            </tbody>
+            
+          </table>
+      
+
+     {% endfor %}
+</body>
+</html>

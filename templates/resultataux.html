@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bookmarks Search</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div style="background:transparent !important" class="jumbotron">
+            <div style="font-family: 'Pacifico', cursive;">
+                <p>
+                    <center>
+                        <font size="8">Welcome To MyWebSite</font>
+                    </center>
+                </p>
+                <h2>
+                    <button class="btn btn-link pull-left" >
+                       <a href="{{url_for('home')}}">
+                            <h2 style="font-family: 'Pacifico', cursive;">Accueil</h2>
+                    </a>
+                    </button>
+                </h2>   
+            </div>
+        </div>
+        <h3 style="font-family: 'Pacifico', cursive;">Recherche Par Taux ,Veuillez Entrer Un Taux</h3>
+        <form action="/search/results" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary btn-lg" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr style="font-family: 'Pacifico', cursive;">
+
+                    <th >Region</th>
+                    <th>e_dsmi</th>
+                    <th>tesp</th>
+                    <th>temn</th>
+                    <th>tcfm</th>
+                    <th>tpsida</th>
+                    <th>tmi</th>
+                    <th>tcmfm</th>
+                    <th>tf15</th>
+                    <th>tm5ans</th>
+                    <th>tvaj</th>
+
+                </tr>
+            </thead>
+
+            {% for hit in res.hits.hits %}
+            <tbody>
+                <tr>
+                    <td>{{ hit._source.region }}</td>
+                    <td>{{hit._source.e_dsmi}}</td>
+                    <td>{{ hit._source.tesp}}</td>
+                    <td>{{ hit._source.temn}}</td>
+                    <td>{{ hit._source.tcfm}}</td>
+                    <td>{{ hit._source.tpsida}}</td>
+                    <td>{{ hit._source.tmi}}</td>
+                    <td>{{ hit._source.tcmfm}}</td>
+                    <td>{{ hit._source.tf15}}</td>
+                    <td>{{ hit._source.tm}}</td>
+                    <td>{{ hit._source.tvaj}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+
+
+        <footer class="footer">
+                <p>
+                  <h3 style="font-family: 'Pacifico', cursive;">&copy; 2019 Sonatel Academy </h3>
+                </p>
+               
+              </footer>
+    </div>
+</body>
+
+</html>

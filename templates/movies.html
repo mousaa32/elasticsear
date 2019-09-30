@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Bookmarks Search</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div style="background:transparent !important" class="jumbotron">
+            <div style="font-family: 'Pacifico', cursive;">
+                <p>
+                    <center>
+                        <font size="8">Welcome To MyWebSite</font>
+                    </center>
+                </p>
+                <h2>
+                    <button class="btn btn-link pull-left">
+                        <a href="{{url_for('home')}}">
+                            <h2 style="font-family: 'Pacifico', cursive;">Accueil</h2>
+                        </a>
+                    </button>
+                </h2>
+            </div>
+        </div>
+
+
+       
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <div style="width: 75%">
+            <canvas id="myChart1"></canvas>
+        </div>
+        <div style="width: 75%">
+                <canvas id="myChart2"></canvas>
+            </div>
+        <div style="width: 75%">
+            <canvas id="myChart3"></canvas>
+        </div>
+
+        <div>
+            <script>
+                var ctx = document.getElementById('myChart1').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [{% for i in nom_annee %} "{{i}}", {% endfor %}],
+                datasets: [{
+                    label: 'tendance-bar',
+                    backgroundColor: ["blue", "red", "green", "#328f8e", "black",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                        , "blue", "red", "green", "#328f8e", "black",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "green", "#328f8e", "black", "rgba(116,158,258)"
+                        , "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                        , "blue", "red", "green", "#328f8e", "black", "rgba(216,158,108)", "rgba(216,158,258)", "red", "green", "#328f8e", "black"],
+                    data: {{ valeur_anne }},
+                },
+                {
+                    type: 'line',
+                    label: 'tendance-line',
+                    backgroundColor: "red",
+                    data: {{ valeur_anne }},
+                    fill: false
+              }
+                ]
+              },
+
+                // Configuration options go here
+                options: {
+                    title: {
+                        display: true,
+                            text: 'HISTOGRAMME DES FILMS DE  {{minium}} A {{maximum}}'
+                    }
+                }
+                            });
+            </script>
+        </div>
+  
+        <div>
+            <script>
+                var ctx = document.getElementById('myChart2').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [{% for i in nom_acteur %} "{{i}}", {% endfor %}],
+                datasets: [{
+                    label: 'ACTEURS',
+                    backgroundColor: ["blue", "red", "green", "#328f8e", "black",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                        , "blue", "red", "green", "#328f8e", "black",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)",
+                        "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "green", "#328f8e", "black", "rgba(116,158,258)"
+                        , "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                        , "blue", "red", "green", "#328f8e", "black", "rgba(216,158,108)", "rgba(216,158,258)", "red", "green", "#328f8e", "black"],
+                    data: {{ val_acteur }},
+                },
+                ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                            text: 'HISTOGRAMME DES  NOMS DES ACTEURS'
+                    }
+                }
+                    });
+            </script>
+        </div>
+
+
+        <div>
+                <script>
+                    var ctx = document.getElementById('myChart3').getContext('2d');
+                    var chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [{% for i in tab1 %} "{{i}}", {% endfor %}],
+                    datasets: [{
+                        label: 'annee',
+                        backgroundColor: ["blue", "red", "green", "#328f8e", "black",
+                            "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                            , "blue", "red", "green", "#328f8e", "black",
+                            "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)",
+                            "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "green", "#328f8e", "black", "rgba(116,158,258)"
+                            , "rgba(216,158,158)", "rgba(216,158,108)", "rgba(216,158,258)", "rgba(116,158,258)", "rgba(116,258,258)"
+                            , "blue", "red", "green", "#328f8e", "black", "rgba(216,158,108)", "rgba(216,158,258)", "red", "green", "#328f8e", "black"],
+                        data: {{ moyenne }},
+                    },
+                    ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                                text: "HISTOGRAMME DES MOYENNES DE L'EVOLUTION DES NOTES DES FILMS PAR DECENNIE(10 années consecutives avec ces données)"
+                        }
+                    }
+                        });
+                </script>
+            </div>
+
+        <footer class="footer">
+            <p>
+                <h3 style="font-family: 'Pacifico', cursive;">&copy; 2019 Sonatel Academy </h3>
+            </p>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
